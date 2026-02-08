@@ -1,50 +1,51 @@
-Welcome to **ST8-M**—a digital thinking and engineering log system created and maintained by Archie. ST8 is an abbreviation for **State**, while **M** carries multiple meanings: it is the **Machine** that records states, the **Manager** that organizes systems, and also the **Mechanics** that explores operational principles.
+**Welcome to ST8-M** — a digital thought and engineering log system built and maintained by Archie. ST8 is the abbreviation for **State**, and **M** carries multiple meanings: it is the **Machine** that records states, the **Manager** that organizes systems, and the **Mechanics** that explores operational principles.
 
-This is an archive of thought, construction, and evolution.
+This is an archive for thinking, building, and evolving.
 
-## State Index
+### About The Notes
 
-Content follows the naming convention `[Type]-[Number]: [Title]`. This is not merely a form of order, but also a practice of the core philosophy that "everything is a state, and everything can be systematized."
+Notes are the primary content载体 within the ST8-M system, mainly featuring technical analysis articles, engineering practice logs, game design notes, and cross-disciplinary thinking.
+
+#### State Index
+
+Content follows the naming rule `[Type].[Number]-[Title]`. This is not merely a form of order but also a practice of the core idea: "Everything is a state, and everything can be systematized."
 
 | State Code | Full Name & Description |
 | :--- | :--- |
 | **`F`** | **Frontend** - Exploration of frontend architecture, interaction engineering, and modern web technology stacks. |
 | **`B`** | **Backend** - Thoughts on server-side logic, API design, databases, and distributed systems. |
 | **`S`** | **System** - Analysis of system design, toolchains, workflows, and underlying principles. |
-| **`G`** | **Game** - Game mechanism design, graphics programming, engine principles, and development logs. |
-| **`P`** | **Prototype** - The process of prototyping, rapid validation, creative technology, and project incubation. |
+| **`G`** | **Game** - Game mechanics design, graphics programming, engine principles, and development logs. |
+| **`P`** | **Prototype** - Prototype design, rapid validation, creative technology, and project incubation processes. |
 | **`X`** | **Testing** - Testing strategies, automation, quality assurance, and observability practices. |
-| **`O`** | **Operations** - Operations, deployment, infrastructure as code, and cloud-native technologies. |
-| **`U`** | **Linux/Unix** - System philosophy, the art of the command line, the kernel, and the open-source ecosystem. |
+| **`O`** | **Operations** - Ops, deployment, Infrastructure as Code, and cloud-native technologies. |
+| **`U`** | **Linux/Unix** - System philosophy, command-line art, kernel, and open-source ecosystem. |
 | **`D`** | **System Design** - Abstraction of complex systems, architectural paradigms, and solution design. |
-| **`T`** | **Thought** - Cross-domain thinking, logical deduction, design philosophy, and cognitive fragments. |
-| **`L`** | **Log** - Periodic records, project retrospectives, learning trajectories, and periodic summaries. |
+| **`T`** | **Thought** - Cross-disciplinary thinking, logical deduction, design philosophy, and cognitive fragments. |
+| **`L`** | **Log** - Periodic records, project retrospectives, learning trajectories, and阶段性 summaries. |
 
-## The Operator
+### About The Jottings
 
-I am **Archie**, the builder and primary operator of this system.
+Jottings are a lighter-weight recording space within the ST8-M system, used to capture and share fragmented thoughts, fleeting inspirations, daily observations, or brief insights.
 
--   **Core State**: A developer equally curious about every layer of computer systems. My interests oscillate between foundational software, interaction logic, and creating things that "run."
--   **Mindset-Driven**: Obsessed with decomposing complex requirements into clear logic and enjoying the entire process from concept and design to implementation. Firmly believe that elegant implementation stems from deep understanding.
--   **Current Technical Focus**: **C/C++** (Systems & Performance), **Python** (Tools & Logic), **JavaScript/TypeScript** (Interaction & Expression). Continuously exploring lower-level abstractions.
+#### State Index
 
-This blog documents my transitions and cycles between core states of **"Deep Understanding,"** **"System Building,"** and **"Creative Output."** Each post is a snapshot of a state.
+Jottings are not categorized by content type. They are simply serialized using the format `E.[number]-[Title]` and identified via Tags.
 
-## The Stack
+### The Stack
 
--   **Generation Engine**: https://astro.build - Pursuing content speed and a pure web.
--   **Theme Framework**: https://github.com/satnaing/astro-paper - A clean, readable blog theme.
--   **Deployment Platform**: https://vercel.com - Seamless global deployment experience.
--   **Storage & Collaboration**: https://github.com - The versioned repository for all content and source code.
+-   **Generator:** [Astro](https://astro.build) - Pursuing content speed and web purity.
+-   **Theme Framework:** [ThoughtLite](https://github.com/tuyuritio/astro-theme-thought-lite) - A clean, readable blog theme.
+-   **Deployment Platform:** [Vercel](https://vercel.com) - Seamless global deployment experience.
+-   **Storage & Collaboration:** [GitHub](https://github.com) - The version control repository for all content and source code.
 
-## State Transition Invitation
+### State Transition Invitation
 
-The records here are a byproduct of personal learning and thinking. Their greatest value lies in resonating with you, offering a new perspective, or solving a specific problem.
+The records here are by-products of personal learning and thinking. If any "state" resonates with you, provides a new perspective, or solves a specific problem, that is its greatest value.
 
-You can interact with the system or trigger new state transitions via the following protocols:
+You can interact with the system or trigger new state transitions through the following protocols:
 
--   **Communication Protocol**: mailto:archie.z@zhoon.com
--   **Code Repository**: https://github.com/Archie-Z/ST8-M
--   **Social Node**: https://x.com/CChueng12687
+-   **Communication Protocol:** [archie.z@zhoon.com](mailto:archie.z@zhoon.com)
+-   **Code Repository:** [Archie-Z/ST8-M](https://github.com/Archie-Z/ST8-M)
+-   **Social Node:** [@Archie_Z](https://x.com/CChueng12687)
 
-**Subscribe to the RSS feed to receive state update broadcasts from the system.**
