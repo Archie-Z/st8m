@@ -5,5 +5,6 @@
 	"i18n-ally.defaultNamespace": "index",
 	"files.associations": {
 		"global.css": "tailwindcss"
-	}
+	},
+	"svg.preview.background": "dark-transparent"
 }

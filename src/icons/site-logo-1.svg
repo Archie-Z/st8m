@@ -1,0 +1,5 @@
+<svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 14: 野蛮螺旋 - 动态机制 -->
+  <path d="M50 50C50 28 72 22 72 42C72 58 50 58 50 72C50 88 78 82 78 58" stroke="currentColor" stroke-width="10" stroke-linecap="square" fill="none"/>
+  <path d="M50 50C50 72 28 78 28 58C28 42 50 42 50 28C50 12 22 18 22 42" stroke="currentColor" stroke-width="10" stroke-linecap="square" fill="none"/>
+</svg>

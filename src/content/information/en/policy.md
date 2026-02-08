@@ -1,6 +1,6 @@
 ## Privacy Policy
 
-> **Last Updated**: Sep 20, 2025
+> **Last Updated**: Feb 06, 2026
 
 We highly value your privacy and only collect the minimal data necessary to provide basic services. This policy explains how we collect, use, and protect your data.
 
