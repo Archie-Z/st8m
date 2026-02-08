@@ -46,5 +46,5 @@
 你可以通过以下协议与系统交互，或触发新的状态迁移：
 
 -   **通信协议**: [archie.z@zhoon.com](mailto:archie.z@zhoon.com)
--   **代码仓库**: [Archie-Z/ST8-M](https://github.com/Archie-Z/ST8-M)
+-   **代码仓库**: [Archie-Z/ST8-M](https://github.com/Archie-Z/st8m)
 -   **社交节点**: [@Archie_Z](https://x.com/CChueng12687)

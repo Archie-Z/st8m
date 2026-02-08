@@ -46,6 +46,6 @@
 以下のプロトコルを通じてシステムと対話したり、新たな状態遷移を引き起こしたりできます：
 
 -   **通信プロトコル:** [archie.z@zhoon.com](mailto:archie.z@zhoon.com)
--   **コードリポジトリ:** [Archie-Z/ST8-M](https://github.com/Archie-Z/ST8-M)
+-   **コードリポジトリ:** [Archie-Z/ST8-M](https://github.com/Archie-Z/st8m)
 -   **ソーシャルノード:** [@Archie_Z](https://x.com/CChueng12687)
 

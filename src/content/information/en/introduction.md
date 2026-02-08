@@ -46,6 +46,6 @@ The records here are by-products of personal learning and thinking. If any "stat
 You can interact with the system or trigger new state transitions through the following protocols:
 
 -   **Communication Protocol:** [archie.z@zhoon.com](mailto:archie.z@zhoon.com)
--   **Code Repository:** [Archie-Z/ST8-M](https://github.com/Archie-Z/ST8-M)
+-   **Code Repository:** [Archie-Z/ST8-M](https://github.com/Archie-Z/st8m)
 -   **Social Node:** [@Archie_Z](https://x.com/CChueng12687)
 
