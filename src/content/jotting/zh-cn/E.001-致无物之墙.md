@@ -1,8 +1,8 @@
 ---
-title: $filename
-timestamp: $CURRENT_TIMESTAMP
-# series: 
-tags: [poetry]
+title: E.001-致无物之墙
+timestamp: 2026-02-13T17:02:03Z
+# series:
+tags: [Poetry]
 description: 致所有的安东尼奥·葛兰西。
 ---
 
