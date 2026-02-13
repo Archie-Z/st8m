@@ -151,7 +151,7 @@ cmd_jot() {
         return 1
     fi
     
-    local target_dir="$PROJECT_ROOT/src/content/jotting/zh_cn"
+    local target_dir="$PROJECT_ROOT/src/content/jotting/zh-cn"
     local filepath="$target_dir/${filename}.md"
     
     mkdir -p "$target_dir"
