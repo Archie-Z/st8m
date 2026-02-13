@@ -73,7 +73,7 @@ CYAN='\033[0;36m'
 NC='\033[0m' 
 
 # 超时设置 (秒)
-SYNC_TIMEOUT=30
+SYNC_TIMEOUT=60
 
 # 显示帮助
 show_help() {
@@ -113,8 +113,8 @@ cmd_note(){
 	if [ ! -f "$filepath" ]; then
 		cat > "$filepath" << 'FILEEOF'
 ---
-title:$filename
-timestamp:$CURRENT_TIMESTAMP
+title: $filename
+timestamp: $CURRENT_TIMESTAMP
 series:
 tags: []
 description:
@@ -159,8 +159,8 @@ cmd_jot() {
     if [ ! -f "$filepath" ]; then
         cat > "$filepath" << 'FILEEOF'
 ---
-title:$filename
-timestamp:$CURRENT_TIMESTAMP
+title: $filename
+timestamp: $CURRENT_TIMESTAMP
 series:
 tags: []
 description:
