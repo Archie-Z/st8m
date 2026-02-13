@@ -153,6 +153,7 @@ cmd_jot() {
     
     local target_dir="$PROJECT_ROOT/src/content/jotting/zh-cn"
     local filepath="$target_dir/${filename}.md"
+    local CURRENT_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
     
     mkdir -p "$target_dir"
     
@@ -187,6 +188,7 @@ FILEEOF
         echo -e "${YELLOW}File created. Open manually: $filepath${NC}"
     fi
 }
+
 # GitHub 同步（带超时）
 cmd_update() {
     local original_dir
