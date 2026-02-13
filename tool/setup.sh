@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-BIN_DIR="$HOME/.loacl/bin"
+BIN_DIR="$HOME/.local/bin"
 ST8M_BIN="$BIN_DIR/st8m"
 
 echo -e "${BLUE}=== ST8-M CLI Tool Installer ===${NC}"
@@ -111,7 +111,7 @@ cmd_note(){
 	
 	# 创建文件 (如果不存在)
 	if [ ! -f "$filepath" ]; then
-		cat > "$filepath" << 'FILEEOF'
+		cat > "$filepath" << FILEEOF
 ---
 title: $filename
 timestamp: $CURRENT_TIMESTAMP
@@ -158,7 +158,7 @@ cmd_jot() {
     mkdir -p "$target_dir"
     
     if [ ! -f "$filepath" ]; then
-        cat > "$filepath" << 'FILEEOF'
+        cat > "$filepath" << FILEEOF
 ---
 title: $filename
 timestamp: $CURRENT_TIMESTAMP
