@@ -66,6 +66,14 @@ VERSION="1.0.0"
 PROJECT_ROOT="$HOME/Projects/st8m"
 CONTENT_DIR="$PROJECT_ROOT/src/content"
 EDITOR="${EDITOR:-code}"  # 默认使用VSCode作为编辑器
+# 优先级: code > nvim > vim
+if command -v code &> /dev/null; then
+    EDITOR="code --wait"
+elif command -v nvim &> /dev/null; then
+    EDITOR="nvim"
+else
+    EDITOR="vim"
+fi
 
 # 颜色定义
 RED='\033[0;31m'
@@ -180,7 +188,7 @@ cmd_list() {
             print_info "随想列表 (jotting/$DEFAULT_LANG):"
             ;;
         *)
-            print_error "未知类型: $type. 使用 -n (笔记) 或 -j (随想)"
+            print_error "${RED}未知类型: $type. 使用 -n (笔记) 或 -j (随想)${NC}"
             return 1
             ;;
     esac
@@ -203,7 +211,7 @@ cmd_list() {
     if [ $count -eq 0 ]; then
         echo "  (空)"
     else
-        print_success "共 $count 个文件"
+        print_success "${GREEN}共 $count 个文件${NC}"
     fi
 }
 
@@ -213,7 +221,7 @@ cmd_new() {
     local filename="$2"
     
     if [ -z "$filename" ]; then
-        print_error "请提供文件名"
+        print_error "${RED}请提供文件名${NC}"
         echo "用法: st8m new [-n|-j] <filename>"
         return 1
     fi
@@ -228,7 +236,7 @@ cmd_new() {
             target_dir="$CONTENT_DIR/jotting/$DEFAULT_LANG"
             ;;
         *)
-            print_error "未知类型: $type"
+            print_error "${RED}未知类型: $type${NC}"
             return 1
             ;;
     esac
@@ -251,7 +259,7 @@ cmd_new() {
     local title=$(basename "$filename" .md)
     generate_frontmatter "$title" > "$filepath"
     
-    print_success "创建文件: $filepath"
+    print_success "${GREEN}创建文件: $filepath${NC}"
     
     # 使用编辑器打开
     cd "$target_dir"
@@ -364,7 +372,7 @@ cmd_del() {
     local filename="$2"
     
     if [ -z "$type" ] || [ -z "$filename" ]; then
-        print_error "请提供类型和文件名"
+        print_error "${RED}请提供类型和文件名${NC}"
         echo "用法: st8m del [-n|-j] <filename>"
         return 1
     fi
@@ -379,7 +387,7 @@ cmd_del() {
             base_type="jotting"
             ;;
         *)
-            print_error "未知类型: $type"
+            print_error "${RED}未知类型: $type${NC}"
             return 1
             ;;
     esac
@@ -397,13 +405,13 @@ cmd_del() {
     done
     
     if [ ${#existing_paths[@]} -eq 0 ]; then
-        print_error "未找到文件: $filename"
+        print_error "${RED}未找到文件: $filename${NC}"
         return 1
     fi
     
     echo "将删除以下文件:"
     for path in "${existing_paths[@]}"; do
-        echo "  ${RED}• $path${NC}"
+        echo -e "  ${RED}• $path${NC}"
     done
     
     read -p "确认删除? (y/N): " confirm
@@ -426,7 +434,7 @@ cmd_trans() {
     local target_langs=("$@")
     
     if [ -z "$type" ] || [ -z "$filename" ] || [ ${#target_langs[@]} -eq 0 ]; then
-        print_error "参数不足"
+        print_error "${RED}参数不足${NC}"
         echo "用法: st8m trans [-n|-j] <filename> <lang1> [lang2] [lang3]"
         echo "支持语言: zh-cn, en, ja"
         return 1
@@ -450,7 +458,7 @@ cmd_trans() {
     local source_path=$(get_file_path "$base_type" "$DEFAULT_LANG" "$filename")
     
     if [ ! -f "$source_path" ]; then
-        print_error "源文件不存在: $source_path"
+        print_error "${RED}源文件不存在: $source_path${NC}"
         return 1
     fi
     
@@ -464,7 +472,7 @@ cmd_trans() {
     for lang in "${target_langs[@]}"; do
         # 验证语言代码
         if [[ ! " ${LANGS[*]} " =~ " $lang " ]]; then
-            print_warning "跳过不支持的语言: $lang"
+            print_warning "${YELLOW}跳过不支持的语言: $lang${NC}"
             continue
         fi
         
@@ -531,7 +539,7 @@ cmd_update() {
     if timeout 30 git push origin "$current_branch" 2>&1; then
         print_success "同步成功!"
     else
-        print_error "同步失败或超时"
+        print_error "${RED}同步失败或超时${NC}"
         git reset --soft HEAD~1  # 回滚本地提交
         return 1
     fi
@@ -542,7 +550,7 @@ cmd_rollback() {
     local version="$1"
     
     if [ -z "$version" ]; then
-        print_error "请提供版本号"
+        print_error "${RED}请提供版本号${NC}"
         echo "用法: st8m --rollback <commit-hash>"
         return 1
     fi
@@ -611,25 +619,54 @@ main() {
     
     local command="$1"
     shift
-    
+
     case "$command" in
         list|ls)
             cmd_list "$@"
             ;;
         new|n)
-            cmd_new "$@"
+            # 智能参数处理：无类型标识时默认 -n
+            if [[ "$1" == "-n" || "$1" == "--note" || "$1" == "-j" || "$1" == "--jotting" ]]; then
+                cmd_new "$@"
+            else
+                cmd_new "-n" "$@"
+            fi
             ;;
         edit|e)
-            cmd_edit "$@"
+            # 同上
+            if [[ "$1" == "-n" || "$1" == "--note" || "$1" == "-j" || "$1" == "--jotting" ]]; then
+                cmd_edit "$@"
+            else
+                cmd_edit "-n" "$@"
+            fi
             ;;
         rename|mv)
-            cmd_rename "$@"
+            # rename 需要特殊处理，因为它有3个参数
+            if [[ "$1" == "-n" || "$1" == "--note" || "$1" == "-j" || "$1" == "--jotting" ]]; then
+                cmd_rename "$@"
+            else
+                cmd_rename "-n" "$@"
+            fi
             ;;
         del|rm|delete)
-            cmd_del "$@"
+            # del 必须带类型标识，否则无法区分
+            if [[ "$1" == "-n" || "$1" == "--note" || "$1" == "-j" || "$1" == "--jotting" ]]; then
+                cmd_del "$@"
+            else
+                print_error "${RED}del 命令必须指定类型: -n (笔记) 或 -j (随想)${NC}"
+                echo "用法: st8m del [-n|-j] <filename>"
+                exit 1
+            fi
             ;;
         trans|translate|t)
-            cmd_trans "$@"
+            # trans 同理
+            if [[ "$1" == "-n" || "$1" == "--note" || "$1" == "-j" || "$1" == "--jotting" ]]; then
+                cmd_trans "$@"
+            else
+                print_error "trans 命令必须指定类型: -n (笔记) 或 -j (随想)"
+                echo "用法: st8m trans [-n|-j] <filename> <lang...>"
+                exit 1
+            fi
             ;;
         --update|update|up)
             cmd_update
