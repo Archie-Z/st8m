@@ -65,7 +65,7 @@ set -e
 VERSION="1.0.0"
 PROJECT_ROOT="$HOME/Projects/st8m"
 CONTENT_DIR="$PROJECT_ROOT/src/content"
-EDITOR="${EDITOR:-vim}"
+EDITOR="${EDITOR:-code}"  # 默认使用VSCode作为编辑器
 
 # 颜色定义
 RED='\033[0;31m'
@@ -145,8 +145,10 @@ generate_frontmatter() {
     cat << YAML
 ---
 title: "$title"
-date: "$datetime"
-lastModified: "$datetime"
+timestamp: "$datetime"
+series: 
+tags: []
+description: 
 ---
 
 YAML
@@ -158,14 +160,14 @@ update_frontmatter_date() {
     local new_date=$(date +"%Y-%m-%dT%H:%M:%S")
     
     if [ -f "$file" ]; then
-        # 使用sed更新lastModified字段
-        sed -i "s/lastModified: \".*\"/lastModified: \"$new_date\"/" "$file"
+        # 使用sed更新timestamp字段
+        sed -i "s/timestamp: \".*\"/timestamp: \"$new_date\"/" "$file"
     fi
 }
 
 # 列出文件
 cmd_list() {
-    local type="${1:--n}"
+    local type="${1:-n}"
     local target_dir
     
     case "$type" in
@@ -207,7 +209,7 @@ cmd_list() {
 
 # 创建新文件
 cmd_new() {
-    local type="${1:--n}"
+    local type="${1:-n}"
     local filename="$2"
     
     if [ -z "$filename" ]; then
@@ -258,7 +260,7 @@ cmd_new() {
 
 # 编辑文件
 cmd_edit() {
-    local type="${1:--n}"
+    local type="${1:-n}"
     local filename="$2"
     
     if [ -z "$filename" ]; then
@@ -302,7 +304,7 @@ cmd_edit() {
 
 # 重命名文件
 cmd_rename() {
-    local type="${1:--n}"
+    local type="${1:-n}"
     local oldname="$2"
     local newname="$3"
     
@@ -481,8 +483,10 @@ cmd_trans() {
         cat > "$target_path" << YAML
 ---
 title: "$trans_title"
-date: "$trans_date"
-lastModified: "$trans_date"
+timestamp: "$trans_date"
+series: 
+tags: []
+description: 
 lang: "$lang"
 ---
 
@@ -570,39 +574,31 @@ cmd_version() {
 
 # 显示帮助
 cmd_help() {
-    cat << HELP
-${CYAN}ST8-M CLI Tool${NC} - 个人博客管理系统
-
-${GREEN}用法:${NC}
-    st8m <command> [options]
-
-${GREEN}命令:${NC}
-    ${YELLOW}list${NC} [-n|-j]              列出文件 (默认: note)
-    ${YELLOW}new${NC} [-n|-j] <filename>    创建并编辑新文件
-    ${YELLOW}edit${NC} [-n|-j] <filename>   编辑现有文件
-    ${YELLOW}rename${NC} [-n|-j] <old> <new> 重命名文件
-    ${YELLOW}del${NC} [-n|-j] <filename>    删除文件（所有语言版本）
-    ${YELLOW}trans${NC} [-n|-j] <file> <lang...> 翻译文件 (zh-cn, en, ja)
-
-${GREEN}选项:${NC}
-    ${YELLOW}-n, --note${NC}                操作笔记目录 (默认)
-    ${YELLOW}-j, --jotting${NC}             操作随想目录
-
-${GREEN}全局选项:${NC}
-    ${YELLOW}--update${NC}                  同步项目到GitHub
-    ${YELLOW}--rollback${NC} <version>      回滚到指定版本
-    ${YELLOW}--version${NC}                 显示版本信息
-    ${YELLOW}--help${NC}                    显示此帮助信息
-
-${GREEN}示例:${NC}
-    st8m list                    # 列出所有笔记
-    st8m new -j today-thoughts   # 创建随想
-    st8m edit -n my-article      # 编辑笔记
-    st8m trans -n hello en ja    # 翻译到英文和日文
-    st8m --update                # 同步到GitHub
-
-${BLUE}项目地址:${NC} https://github.com/Archie-Z/st8m
-HELP
+    printf "\n${CYAN}ST8-M CLI Tool${NC} - 个人博客管理系统\n\n"
+    printf "${GREEN}用法:${NC}\n"
+    printf "    st8m <command> [options]\n\n"
+    printf "${GREEN}命令:${NC}\n"
+    printf "    ${YELLOW}list${NC} [-n|-j]              列出文件 (默认: note)\n"
+    printf "    ${YELLOW}new${NC} [-n|-j] <filename>    创建并编辑新文件\n"
+    printf "    ${YELLOW}edit${NC} [-n|-j] <filename>   编辑现有文件\n"
+    printf "    ${YELLOW}rename${NC} [-n|-j] <old> <new> 重命名文件\n"
+    printf "    ${YELLOW}del${NC} [-n|-j] <filename>    删除文件（所有语言版本）\n"
+    printf "    ${YELLOW}trans${NC} [-n|-j] <file> <lang...> 翻译文件 (zh-cn, en, ja)\n\n"
+    printf "${GREEN}选项:${NC}\n"
+    printf "    ${YELLOW}-n, --note${NC}                操作笔记目录 (默认)\n"
+    printf "    ${YELLOW}-j, --jotting${NC}             操作随想目录\n\n"
+    printf "${GREEN}全局选项:${NC}\n"
+    printf "    ${YELLOW}--update${NC}                  同步项目到GitHub\n"
+    printf "    ${YELLOW}--rollback${NC} <version>      回滚到指定版本\n"
+    printf "    ${YELLOW}--version${NC}                 显示版本信息\n"
+    printf "    ${YELLOW}--help${NC}                    显示此帮助信息\n\n"
+    printf "${GREEN}示例:${NC}\n"
+    printf "    st8m list                    # 列出所有笔记\n"
+    printf "    st8m new -j today-thoughts   # 创建随想\n"
+    printf "    st8m edit -n my-article      # 编辑笔记\n"
+    printf "    st8m trans -n hello en ja    # 翻译到英文和日文\n"
+    printf "    st8m --update                # 同步到GitHub\n\n"
+    printf "${BLUE}项目地址:${NC} https://github.com/Archie-Z/st8m\n\n"  
 }
 
 # 主入口
