@@ -1,6 +1,6 @@
 ---
-title: "E.002-感怀"
-timestamp: "2026-02-19T23:24:16"
+title: E.002-感怀
+timestamp: 2026-02-19T23:24:16
 # series: 
 tags: [Poetry]
 description: 我们在万物隐退的背景下，制造着转瞬即逝的幻美。  

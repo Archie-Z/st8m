@@ -152,8 +152,8 @@ generate_frontmatter() {
     
     cat << YAML
 ---
-title: "$title"
-timestamp: "$datetime"
+title: $title
+timestamp: $datetime
 series: 
 tags: []
 description: 
@@ -490,12 +490,12 @@ cmd_trans() {
         
         cat > "$target_path" << YAML
 ---
-title: "$trans_title"
-timestamp: "$trans_date"
+title: $trans_title
+timestamp: $trans_date
 series: 
 tags: []
 description: 
-lang: "$lang"
+lang: $lang
 ---
 
 <!-- 此文件由st8m trans自动生成，待翻译 -->
