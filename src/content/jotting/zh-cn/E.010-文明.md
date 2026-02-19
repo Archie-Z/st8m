@@ -2,7 +2,7 @@
 title: E.010-文明
 timestamp: 2026-02-20T00:15:15
 # series: 
-tags: [Poety]
+tags: [Poetry]
 # description: 
 ---
 怒涛对流，  
