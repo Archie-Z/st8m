@@ -3,7 +3,7 @@ title: E.003-新年偶感
 timestamp: 2026-02-19T23:20:53
 # series: 
 tags: [Poetry]
-description: 
+description: 新年偶感
 ---
 新年的时候，  
 灶台是最忙的一个，  

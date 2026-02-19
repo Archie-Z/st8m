@@ -3,7 +3,7 @@ title: E.004-致所有的马克西姆·克里夫佐夫
 timestamp: 2026-02-19T23:34:47
 # series: 
 tags: [Poetry]
-description: 
+description: 致俄乌战场上死去的诗人们
 ---
 激光、导弹、无人机  
 以及填线的可怜虫，  
