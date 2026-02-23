@@ -199,14 +199,14 @@ cmd_list() {
     fi
     
     local count=0
-    # 使用 find 命令确保遍历所有文件
-    while IFS= read -r file; do
+    # 使用 find -print0 处理带空格的文件名，配合 while read 循环
+    while IFS= read -r -d '' file; do
         [ -f "$file" ] || continue
         local name=$(basename "$file" .md)
         local date=$(stat -c %y "$file" 2>/dev/null | cut -d' ' -f1 || stat -f %Sm -t %Y-%m-%d "$file" 2>/dev/null)
-        echo -e "  ${CYAN}•${NC} $name ${YELLOW}($date)${NC}"
-        ((count++))
-    done < <(find "$target_dir" -maxdepth 1 -name "*.md" -type f 2>/dev/null | sort)
+        printf "  %b•%b %s %b(%s)%b\n" "$CYAN" "$NC" "$name" "$YELLOW" "$date" "$NC"
+        count=$((count + 1))
+    done < <(find "$target_dir" -maxdepth 1 -name "*.md" -type f -print0 2>/dev/null | sort -z)
     
     if [ $count -eq 0 ]; then
         echo "  (空)"
