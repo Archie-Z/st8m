@@ -65,7 +65,7 @@ set -e
 VERSION="1.0.0"
 PROJECT_ROOT="$HOME/Projects/st8m"
 CONTENT_DIR="$PROJECT_ROOT/src/content"
-EDITOR="${EDITOR:-code}"  # 默认使用VSCode作为编辑器
+EDITOR="${EDITOR:--code}"  # 默认使用VSCode作为编辑器
 # 优先级: code > nvim > vim
 if command -v code &> /dev/null; then
     EDITOR="code --wait"
@@ -175,7 +175,7 @@ update_frontmatter_date() {
 
 # 列出文件
 cmd_list() {
-    local type="${1:-n}"
+    local type="${1:--n}"
     local target_dir
     
     case "$type" in
@@ -188,7 +188,7 @@ cmd_list() {
             print_info "随想列表 (jotting/$DEFAULT_LANG):"
             ;;
         *)
-            print_error "${RED}未知类型: $type. 使用 -n (笔记) 或 -j (随想)${NC}"
+            print_error "未知类型: $type. 使用 -n (笔记) 或 -j (随想)"
             return 1
             ;;
     esac
@@ -199,25 +199,25 @@ cmd_list() {
     fi
     
     local count=0
-    for file in "$target_dir"/*.md; do
-        if [ -f "$file" ]; then
-            local name=$(basename "$file" .md)
-            local date=$(stat -c %y "$file" 2>/dev/null | cut -d' ' -f1 || stat -f %Sm -t %Y-%m-%d "$file" 2>/dev/null)
-            echo -e "${CYAN}  •${NC} $name ${YELLOW}($date)${NC}"
-            ((count++))
-        fi
-    done
+    # 使用 find 命令确保遍历所有文件
+    while IFS= read -r file; do
+        [ -f "$file" ] || continue
+        local name=$(basename "$file" .md)
+        local date=$(stat -c %y "$file" 2>/dev/null | cut -d' ' -f1 || stat -f %Sm -t %Y-%m-%d "$file" 2>/dev/null)
+        echo -e "  ${CYAN}•${NC} $name ${YELLOW}($date)${NC}"
+        ((count++))
+    done < <(find "$target_dir" -maxdepth 1 -name "*.md" -type f 2>/dev/null | sort)
     
     if [ $count -eq 0 ]; then
         echo "  (空)"
     else
-        print_success "${GREEN}共 $count 个文件${NC}"
+        print_success "共 $count 个文件"
     fi
 }
 
 # 创建新文件
 cmd_new() {
-    local type="${1:-n}"
+    local type="${1:--n}"
     local filename="$2"
     
     if [ -z "$filename" ]; then
@@ -268,7 +268,7 @@ cmd_new() {
 
 # 编辑文件
 cmd_edit() {
-    local type="${1:-n}"
+    local type="${1:--n}"
     local filename="$2"
     
     if [ -z "$filename" ]; then
@@ -312,7 +312,7 @@ cmd_edit() {
 
 # 重命名文件
 cmd_rename() {
-    local type="${1:-n}"
+    local type="${1:--n}"
     local oldname="$2"
     local newname="$3"
     
