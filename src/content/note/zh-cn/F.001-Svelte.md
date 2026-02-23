@@ -7,7 +7,7 @@ description: The basic syntax of Svelte，a framework for building user interfac
 ---
 类似于React，Svelte也使用“{}”包含内嵌脚本代码：  
 
-1.在HTML中插入变量：
+#### 1.在HTML中插入变量：
 
 ```
 <script lang="ts">
@@ -17,8 +17,9 @@ description: The basic syntax of Svelte，a framework for building user interfac
 ```
 
 Output:
+
 ![Hello Svelte!](hello.png)
-2.在HTML中插入图片：
+#### 2.在HTML中插入图片：
 
 ```
 <script>
@@ -29,6 +30,7 @@ Output:
 ```
 
 Output:
+
 ![A man dances.](dancer.png)
 
 对于Svelte来说，每一个.svelte都是一个组件，你可以在任何一个组件中添加\<style\>\<\/style\>标签来自定义样式，该样式的作用域仅在组件内部：
@@ -46,6 +48,7 @@ Output:
 ```
 
 Output:
+
 ![This is a paragraph.](style.png)
 
 你可以使用import导入其他组件，但是被导入的组件的样式不会受到组件内的style样式影响：
@@ -73,5 +76,6 @@ Nested.svelte
 <p>This is another paragraph.</p>
 ```
 Output:
+
 ![include a component.](include.png)
 
